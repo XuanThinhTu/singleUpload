@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireframe - Single SO Upload</title>
+    <style>
+        /* Mô phỏng giao diện SAP GUI (Basis 757 / Logon 800) */
+        body {
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            font-size: 14px;
+            background-color: #F0F0F0;
+            color: #333;
+            margin: 0;
+            padding: 10px;
+        }
+
+        .sap-screen {
+            max-width: 1200px;
+            margin: auto;
+            background-color: #F5F5F5;
+            border: 1px solid #C0C0C0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Mô phỏng Group Box */
+        .group-box {
+            border: 1px solid #C0C0C0;
+            margin: 10px;
+            padding: 15px;
+            background-color: #FDFDFD;
+            border-radius: 3px;
+        }
+
+        .group-box-title {
+            font-weight: bold;
+            color: #003366;
+            margin-top: -28px;
+            margin-left: 5px;
+            background-color: #FDFDFD;
+            padding: 0 5px;
+            font-size: 15px;
+        }
+
+        .field-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 10px 20px;
+            margin-top: 10px;
+        }
+
+        .field {
+            display: flex;
+            align-items: center;
+        }
+
+        .field label {
+            width: 140px;
+            color: #555;
+            flex-shrink: 0;
+        }
+
+        .field input[type="text"] {
+            width: 200px;
+            padding: 4px;
+            border: 1px solid #7F9DB9;
+            background-color: #FFFFFF;
+        }
+
+        .field input[type="text"].display-only {
+            background-color: #F0F0F0;
+            border-color: #D0D0D0;
+        }
+
+        /* Mô phỏng Tabstrip Control */
+        .tab-container {
+            margin: 10px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            border-bottom: 2px solid #0078D7;
+        }
+
+        .tab-btn {
+            padding: 8px 16px;
+            cursor: pointer;
+            background-color: #E0E0E0;
+            border: 1px solid #B0B0B0;
+            border-bottom: none;
+            margin-right: 4px;
+            border-radius: 3px 3px 0 0;
+            font-weight: bold;
+            color: #444;
+        }
+
+        .tab-btn.active {
+            background-color: #FFFFFF;
+            border: 1px solid #B0B0B0;
+            border-bottom: 2px solid #FFFFFF;
+            position: relative;
+            top: 2px;
+            color: #003366;
+        }
+
+        .tab-content {
+            background-color: #FFFFFF;
+            padding: 15px;
+            border: 1px solid #B0B0B0;
+            border-top: none;
+        }
+
+        .tab-pane {
+            display: none;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        /* Mô phỏng Table Control / ALV */
+        .sap-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            border: 1px solid #C0C0C0;
+        }
+
+        .sap-table th,
+        .sap-table td {
+            border: 1px solid #D0D0D0;
+            padding: 6px;
+            text-align: left;
+            font-size: 13px;
+        }
+
+        .sap-table th {
+            background-color: #E0E8F2; /* SAP Table Header Blue */
+            font-weight: bold;
+        }
+
+        .sap-table tr:nth-child(even) {
+            background-color: #F7F7F7;
+        }
+
+        /* Nút bấm ở cuối */
+        .footer-toolbar {
+            padding: 10px;
+            background-color: #F0F0F0;
+            border-top: 1px solid #C0C0C0;
+            text-align: right;
+        }
+
+        .sap-button {
+            padding: 6px 15px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            border: 1px solid #A0A0A0;
+            border-radius: 3px;
+            background-color: #E0E0E0;
+        }
+        
+        .sap-button.primary {
+            background-color: #0078D7;
+            color: white;
+            border-color: #005A9E;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="sap-screen">
+        <div class="group-box">
+            <div class="group-box-title">1. Overview</div>
+            <div class="field-grid">
+                <div class="field">
+                    <label for="so_type">Sales Order Type</label>
+                    <input type="text" id="so_type" value="OR">
+                </div>
+                <div class="field">
+                    <label for="sales_org">Sales Organization</label>
+                    <input type="text" id="sales_org" value="1000">
+                </div>
+                <div class="field">
+                    <label for="dist_chan">Distribution Channel</label>
+                    <input type="text" id="dist_chan" value="10">
+                </div>
+                <div class="field">
+                    <label for="division">Division</label>
+                    <input type="text" id="division" value="00">
+                </div>
+                <div class="field">
+                    <label for="sales_office">Sales Office</label>
+                    <input type="text" id="sales_office">
+                </div>
+                <div class="field">
+                    <label for="sales_group">Sales Group</label>
+                    <input type="text" id="sales_group">
+                </div>
+            </div>
+        </div>
+
+        <div class="group-box">
+            <div class="group-box-title">2. Header Fields</div>
+            <div class="field-grid">
+                <div class="field">
+                    <label for="sold_to">Sold-to party</label>
+                    <input type="text" id="sold_to">
+                </div>
+                <div class="field">
+                    <label for="ship_to">Ship-to party</label>
+                    <input type="text" id="ship_to">
+                </div>
+                <div class="field">
+                    <label for="po_ref">Customer Reference</label>
+                    <input type="text" id="po_ref">
+                </div>
+                <div class="field">
+                    <label for="po_date">Customer PO Date</label>
+                    <input type="text" id="po_date" placeholder="DD.MM.YYYY">
+                </div>
+                <div class="field">
+                    <label for="pay_term">Payment term</label>
+                    <input type="text" id="pay_term">
+                </div>
+                <div class="field">
+                    <label for="incoterm">Incoterm</label>
+                    <input type="text" id="incoterm">
+                </div>
+                <div class="field">
+                    <label for="inco_loc">Incoterm Location 1</label>
+                    <input type="text" id="inco_loc">
+                </div>
+                <div class="field">
+                    <label for="req_date">Request Delivery Date</label>
+                    <input type="text" id="req_date" placeholder="DD.MM.YYYY">
+                </div>
+                <div class="field">
+                    <label for="net_val">Net Value</label>
+                    <input type="text" id="net_val" class="display-only" readonly value="0.00 EUR">
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-container">
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="showTab(event, 'Items')">3.1 Items</button>
+                <button class="tab-btn" onclick="showTab(event, 'Shipping')">3.2 Shipping</button>
+                <button class="tab-btn" onclick="showTab(event, 'Conditions')">3.3 Conditions</button>
+            </div>
+
+            <div class="tab-content">
+                <div id="Items" class="tab-pane active">
+                    <table class="sap-table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Material</th>
+                                <th>Item description</th>
+                                <th>Order Quantity</th>
+                                <th>Sales Unit</th>
+                                <th>Itca</th>
+                                <th>Higher-level item</th>
+                                <th>Net price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="text" style="width: 40px;" value="10"></td>
+                                <td><input type="text" style="width: 150px;"></td>
+                                <td><input type="text" style="width: 250px;"></td>
+                                <td><input type="text" style="width: 80px;"></td>
+                                <td><input type="text" style="width: 50px;"></td>
+                                <td><input type="text" style="width: 40px;"></td>
+                                <td><input type="text" style="width: 60px;"></td>
+                                <td><input type="text" style="width: 100px;"></td>
+                            </tr>
+                            </tbody>
+                    </table>
+                </div>
+
+                <div id="Shipping" class="tab-pane">
+                     <table class="sap-table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Material</th>
+                                <th>Delivery Priority</th>
+                                <th>Plant</th>
+                                <th>Shipping point</th>
+                                <th>Storage Log</th>
+                                <th>Delivery date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>10</td>
+                                <td>(Material A)</td>
+                                <td><input type="text" style="width: 40px;"></td>
+                                <td><input type="text" style="width: 60px;"></td>
+                                <td><input type="text" style="width: 60px;"></td>
+                                <td><input type="text" style="width: 60px;"></td>
+                                <td><input type="text" style="width: 100px;"></td>
+                            </tr>
+                            </tbody>
+                    </table>
+                </div>
+
+                <div id="Conditions" class="tab-pane">
+                    <table class="sap-table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>CnTy</th>
+                                <th>Description</th>
+                                <th>Amount</th>
+                                <th>Crcy</th>
+                                <th>per</th>
+                                <th>Unit</th>
+                                <th>Condition Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>10</td>
+                                <td>PR00</td>
+                                <td>Price</td>
+                                <td><input type="text" style="width: 100px;"></td>
+                                <td>EUR</td>
+                                <td>1</td>
+                                <td>PC</td>
+                                <td>(Calculated)</td>
+                            </tr>
+                             <tr>
+                                <td>10</td>
+                                <td>K007</td>
+                                <td>Customer Discount</td>
+                                <td><input type="text" style="width: 100px;"></td>
+                                <td>%</td>
+                                <td></td>
+                                <td></td>
+                                <td>(Calculated)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-toolbar">
+            <button class="sap-button primary">Create Sales Order</button>
+            <button class="sap-button">Simulate</button>
+            <button class="sap-button">Back</button>
+        </div>
+    </div>
+
+    <script>
+        function showTab(evt, tabName) {
+            // Lấy tất cả các tab-pane và ẩn đi
+            var tabPanes = document.getElementsByClassName("tab-pane");
+            for (var i = 0; i < tabPanes.length; i++) {
+                tabPanes[i].style.display = "none";
+                tabPanes[i].classList.remove("active");
+            }
+
+            // Lấy tất cả các nút tab và bỏ class 'active'
+            var tabBtns = document.getElementsByClassName("tab-btn");
+            for (var i = 0; i < tabBtns.length; i++) {
+                tabBtns[i].classList.remove("active");
+            }
+
+            // Hiển thị tab-pane được chọn và thêm class 'active'
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+
+</body>
+</html>
